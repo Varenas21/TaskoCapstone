@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TaskManager>
+@using Microsoft.AspNetCore.Identity
+
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    <header>
+        <h1><strong>Hello @User.Identity?.Name!</strong></h1>
+    </header>
+
+    <div>
+        <h4 class="text-center">
+            Tasks
+        </h4>
+
+
+    </div>
+
+    @if(Model == null)
+    {
+        <h2 class="error"> No Tasks Created!</h2>
+    }
+
+    else
+    {
+        foreach (TaskManager task in Model)
+        {
+            <div>
+                <partial name="_TasksLayout.cshtml" for="@task" />
+            </div>
+        }
+    }
+
+
+
+    <div>
+
+        <footer><a class="top-left-button align-content-center" asp-controller="Home" asp-action="Create"><img src="~/images/plusIcon.png" width="30px" height="30px" /> Create Task</a></footer>
+    </div>
+
+}
+else
+{
+    <div class="align-middle"><h1 class="text-center error" style="font-size:30px;">It seems you aren't logged in! Log in or create a new account for access!</h1></div>
+
+}

@@ -23,6 +23,27 @@ namespace TaskoCapstone.Controllers
             return View();
         }
 
+        public IActionResult Game()
+        {
+            return View();
+        }
+
+        public IActionResult Parent()
+        {
+            return View();
+        }
+
+        public IActionResult Tasks()
+        {
+            return View();
+        }
+
+        
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -1,0 +1,42 @@
+﻿@model TaskManager
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form asp-controller="Home" asp-action="Parent" method="post">
+    <div class="border p-3 mt-4">
+        <h2 class="text-lg-center"> Create a Task </h2>
+        <div asp-validation-summary="All" class="error"></div>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="NameofTask"> Name of Task</label>
+        <input asp-for="NameofTask" class="form-control input-user" placeholder="Example: Clean room" />
+        <span asp-validation-for="NameofTask" class="error"></span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="Description"> Description</label>
+        <input asp-for="Description" class="form-control input-user" placeholder="Example: Follow the Instructions below to clean your room!" />
+        <span asp-validation-for="Description" class="error"></span>
+    </div>
+
+    <div class="draggable-input-container">
+        <label asp-for="StepsofTask"> Instructions </label>
+        <input asp-for="StepsofTask" class="form-controls" contentededitable="true" placeholder="Example: 1. Locate things that out of place \n 2. Put them in assigned location" />
+        <span asp-validation-for="StepsofTask" class="error"></span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="ImageofTask"> Image of Task </label>
+        <input asp-for="ImageofTask" class="form-control input-user" placeholder="Example: Link (TBD)" />
+        <span asp-validation-for="ImageofTask" class="error"></span>
+    </div>
+
+    <div>
+
+        <button type="submit" class="complete-button form"> Create Task</button>
+    </div>
+</form>

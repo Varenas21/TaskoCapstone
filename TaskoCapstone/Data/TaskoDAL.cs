@@ -7,10 +7,6 @@ namespace TaskoCapstone.Data
     {
         private ApplicationDbContext db;
 
-        public TaskoDAL()
-        {
-        }
-
         public TaskoDAL(ApplicationDbContext db)
         {
             this.db = db;

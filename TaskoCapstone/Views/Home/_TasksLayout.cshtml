@@ -1,0 +1,45 @@
+﻿@model TaskoCapstone.Models.TaskManager
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TaskoCapstone</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TaskoCapstone.styles.css" asp-append-version="true" />
+
+    <!-- SOME OF THE LAYOUT WAS USED AS REFERENCES FROM mdbootstrap.com-->
+</head>
+
+
+<body>
+    @if (Model == null)
+    {
+        <h2 class="error">No Tasks! Check back later!</h2>
+    }
+    else
+    {
+        <!-- TEST CARD -->
+        <div class="card">
+            <div class="card-image">
+                <img src="@Model.ImageofTask" alt="Card Image">
+            </div>
+            <div class="card-content">
+                <h2>@Model.NameofTask</h2>
+                <p>@Model.Description</p>
+                <div class="card-buttons">
+                    <button class="delete-button">Delete</button>
+                    <button class="complete-button">Complete</button>
+                    <a class="edit-button" asp-controller="Tasks" asp-action="Edit">Edit</a>
+
+                </div>
+            </div>
+        </div>
+    }
+
+</body>
+</html>
