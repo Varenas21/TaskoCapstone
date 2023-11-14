@@ -1,17 +1,8 @@
 /*
-    $light-shade: #E6F4F6;
-    $light-accent: #FDFEFD;
-    $main-color: #4AD9FB;
-    $dark-shades: #0A2F41;
-    $dark-accent: #034E82;
-    $success-accent: #5dab65;
-    $warning-accent: #da9b2d;
-    $danger-accent: #f44336;
-
-    #f3ecf3
-    #c6cbfa
-    #9891fc
-    #7346c2
+    Dark: ##131313
+    Light: #C56CF9
+    Purple: #460CB
+    Blue: #0916CE
 */
 
 
@@ -34,8 +25,9 @@
 
 body {
     margin-bottom: 60px;
-    background-color: #f3ecf3;
-    font-family: Kidsco;
+    background-color: #191919;
+    font-family: Bebas;
+    color: #C56CF9;
 }
 
 /* Navbar/Homepage */
