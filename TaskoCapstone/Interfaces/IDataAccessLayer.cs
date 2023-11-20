@@ -9,8 +9,11 @@ namespace TaskoCapstone.Interfaces
 
         void EditTasks(TaskManager task);
         TaskManager GetTasks(int? id);
+
+   
+
         void DeleteTasks(int? id);
-        void CompleteTasks(int? id);
+        void CompleteTasks(TaskManager task);
         void CreateTask(TaskManager task);
     }
 }

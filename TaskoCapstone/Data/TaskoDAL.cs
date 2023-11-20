@@ -12,10 +12,14 @@ namespace TaskoCapstone.Data
             this.db = db;
         }
 
-        public void CompleteTasks(int? id)
+        public void CompleteTasks(TaskManager task)
         {
-            throw new NotImplementedException();
+            db.Tasks.Update(task);
+           
+            db.SaveChangesAsync();
         }
+
+
 
         public void CreateTask(TaskManager task)
         {
@@ -25,7 +29,9 @@ namespace TaskoCapstone.Data
 
         public void DeleteTasks(int? id)
         {
-            throw new NotImplementedException();
+            TaskManager taskFound = GetTasks(id);
+            db.Tasks.Remove(taskFound);
+            db.SaveChanges();
         }
 
         public void EditTasks(TaskManager task)

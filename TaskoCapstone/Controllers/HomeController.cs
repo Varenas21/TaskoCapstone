@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using TaskoCapstone.Data;
 using TaskoCapstone.Models;
 
 namespace TaskoCapstone.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
+        
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
+        
 
         public IActionResult Index()
         {
@@ -30,7 +33,8 @@ namespace TaskoCapstone.Controllers
 
         public IActionResult Parent()
         {
-            return View();
+            var tasks = _context.Tasks.ToList();
+            return View(tasks);
         }
 
         public IActionResult Tasks()
@@ -38,7 +42,6 @@ namespace TaskoCapstone.Controllers
             return View();
         }
 
-        
         public IActionResult Create()
         {
             return View();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
 
 namespace TaskoCapstone
@@ -7,31 +8,24 @@ namespace TaskoCapstone
     {
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions()
+            if(env.IsDevelopment())
             {
-                FileProvider = new PhysicalFileProvider("C:\\TaskoCapstone\\TaskoCapstone\\TaskoCapstone\\wwwroot\\Game\\Build\\Game.loader.js")
-            }); ;
+                app.UseDeveloperExceptionPage();
+            }
 
-            app.UseFileServer(new FileServerOptions()
-            {
-                EnableDirectoryBrowsing = true
-            });
+            // Create instance of FileExtension
+            var provider = new FileExtensionContentTypeProvider();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapDefaultControllerRoute();
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            // Add .unityweb extension and MIME type
+            provider.Mappings[".unityweb"] = "application/unityweb";
 
-                endpoints.MapFallbackToFile("/index.html");
-            });
+            // Create an instance of staticFileOptions
+            var options = new StaticFileOptions();
 
-            app.Use(async (context, next) =>
-            {
-                context.Response.Headers.Add("Contetn-Security-Policy", "script-src 'self' 'unsafe-inline'; img-src 'self' data:");
+            // Set to instance of provider
+            options.ContentTypeProvider = provider;
 
-                await next();
-            });
+            app.UseStaticFiles(options);
 
             // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         }

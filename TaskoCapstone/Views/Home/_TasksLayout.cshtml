@@ -32,11 +32,30 @@
                 <h2>@Model.NameofTask</h2>
                 <p>@Model.Description</p>
                 <div class="card-buttons">
-                    <button class="delete-button">Delete</button>
-                    <button class="complete-button">Complete</button>
-                    <a class="edit-button" asp-controller="Tasks" asp-action="Edit">Edit</a>
+
+                    
+                        <button type="button" class="complete-button" data-toggle="model" data-target="#completeModel">Complete</button>
+                    <a asp-controller="Tasks" asp-action="Edit" asp-route-id="@Model.Id" class="edit-button">Edit</a>
+                    <a asp-controller="Tasks" asp-action="Delete" asp-route-id="@Model.Id" class="delete-button">Delete</a>
 
                 </div>
+            </div>
+        </div>
+
+        <div class="model fade" id="completeModel" tabindex="-1" role="dialog" aria-labelledby="completeModelLabel" aria-hidden="true">
+            <div class="model-header">
+                <h5 class="model-title" id="completeModelLabel">
+                    Are you sure you want to mark as <strong> COMPLETED </strong>?
+                </h5>
+                <button type="button" class="close" data-dismiss="model" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="model-footer">
+                <button type="button" cite="delete-button" data-dismiss="model">
+                    Cancel
+                </button>
+                <button type="button" class="complete-button" id="completeButton">Complete</button>
             </div>
         </div>
     }

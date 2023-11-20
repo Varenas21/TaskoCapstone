@@ -17,16 +17,18 @@ namespace TaskoCapstone.Models
 
         public string ImageofTask { get; set; }
 
+        public bool CompletionofTask { get; set; }
 
+        public TaskManager() { }
 
-        public TaskManager(string nameofTask, string description, string stepsofTask, string imageofTask)
+        public TaskManager(string nameofTask, string description, string stepsofTask, string imageofTask, bool completionofTask)
         {
             NameofTask = nameofTask;
             Description = description;
             StepsofTask = nameofTask;
             ImageofTask = imageofTask;
             StepsofTask = stepsofTask;
-
+            CompletionofTask = completionofTask;
         }
     }
 }

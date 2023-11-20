@@ -1,0 +1,37 @@
+﻿@model TaskManager
+
+<form asp-controller="Tasks" asp-action="Edit" method="post">
+    <div class="border p-3 mt-4">
+        <h2 class="text-lg-center"> Edit Task </h2>
+        <div asp-validation-summary="All" class="error"></div>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="NameofTask"> Name of Task</label>
+        <input asp-for="NameofTask" class="form-control input-user" />
+        <span asp-validation-for="NameofTask" class="error"></span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="Description"> Description</label>
+        <input asp-for="Description" class="form-control input-user" />
+        <span asp-validation-for="Description" class="error"></span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="StepsofTask"> Instructions </label>
+        <input asp-for="StepsofTask" class="form-controls input-user" />
+        <span asp-validation-for="StepsofTask" class="error"></span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="ImageofTask"> Image of Task </label>
+        <input asp-for="ImageofTask" class="form-control input-user" />
+        <span asp-validation-for="ImageofTask" class="error"></span>
+    </div>
+
+    <div>
+
+        <button type="submit" class="complete-button form"> Edit Task</button>
+    </div>
+</form>

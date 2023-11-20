@@ -5,7 +5,7 @@
 *@
 @{
 }
-<form asp-controller="Home" asp-action="Parent" method="post">
+<form asp-controller="Tasks" asp-action="Create" method="post">
     <div class="border p-3 mt-4">
         <h2 class="text-lg-center"> Create a Task </h2>
         <div asp-validation-summary="All" class="error"></div>
@@ -25,7 +25,7 @@
 
     <div class="draggable-input-container">
         <label asp-for="StepsofTask"> Instructions </label>
-        <input asp-for="StepsofTask" class="form-controls" contentededitable="true" placeholder="Example: 1. Locate things that out of place \n 2. Put them in assigned location" />
+        <input asp-for="StepsofTask" class="form-controls" placeholder="Example: 1. Locate things that out of place \n 2. Put them in assigned location" />
         <span asp-validation-for="StepsofTask" class="error"></span>
     </div>
 

@@ -12,7 +12,8 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
-    <body></body>
+    <body>
+    </body>
     <header>
         <h1><strong>Hello @User.Identity?.Name!</strong></h1>
     </header>
@@ -25,7 +26,7 @@
 
     </div>
 
-    @if(Model == null)
+    @if (Model == null)
     {
         <h2 class="error"> No Tasks Created!</h2>
     }
@@ -34,9 +35,8 @@
     {
         foreach (TaskManager task in Model)
         {
-            <div>
-                <partial name="_TasksLayout.cshtml" for="@task" />
-            </div>
+            <partial name="_TasksLayout.cshtml" for="@task" />
+
         }
     }
 
