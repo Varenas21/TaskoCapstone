@@ -1,4 +1,4 @@
-﻿@model TaskManager
+﻿@model TasksViewModel
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -6,8 +6,8 @@
 @{
 }
 
-
-<form asp-controller="Tasks" asp-action="Create" method="post">
+<main>
+<form enctype="multipart/form-data" asp-controller="Tasks" asp-action="Create" method="post">
     <div class="border p-3 mt-4">
         <h2 class="text-lg-center"> Create a Task </h2>
         <div asp-validation-summary="All" class="error"></div>
@@ -32,8 +32,11 @@
     </div>
 
     <div class="input-container">
-        <label asp-for="ImageofTask"> Image of Task </label>
-        <input asp-for="ImageofTask" class="form-control input-user" placeholder="Example: Link (TBD)" />
+        <label asp-for="ImageofTask"> Image </label>
+        <div class="custom-file">
+            <input asp-for="ImageofTask" class="form-control input-user custom-file-input" />
+           
+        </div>
         <span asp-validation-for="ImageofTask" class="error"></span>
     </div>
 
@@ -47,6 +50,18 @@
 
         <button type="submit" class="complete-button form"> Create Task</button>
     </div>
+
+    @section Scripts
+    {
+        <script> 
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
+            });
+        </script>
+    }
 </form>
 </main>
 <div>

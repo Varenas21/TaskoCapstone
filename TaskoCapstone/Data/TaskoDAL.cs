@@ -23,7 +23,7 @@ namespace TaskoCapstone.Data
 
 
 
-        public void CreateTask(TaskManager task)
+        public void CreateTask(TasksViewModel task)
         {
             db.Tasks.Add(task);
             db.SaveChanges();

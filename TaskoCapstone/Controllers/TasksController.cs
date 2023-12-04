@@ -2,18 +2,22 @@
 using TaskoCapstone.Data;
 using TaskoCapstone.Interfaces;
 using TaskoCapstone.Models;
+using Microsoft.AspNetCore.Hosting.Builder;
 
 namespace TaskoCapstone.Controllers
 {
     public class TasksController : Controller
     {
-        IDataAccessLayer dal;
-        ApplicationDbContext dbContext;
+        private readonly IDataAccessLayer dal;
+        private readonly ApplicationDbContext dbContext;
+        private readonly IWebHostEnvironment env;
+        
 
-        public TasksController(IDataAccessLayer indal, ApplicationDbContext db)
+        public TasksController(IDataAccessLayer indal, ApplicationDbContext db, IWebHostEnvironment hostingEnvironment)
         {
             dal = indal;
             dbContext = db;
+            env = hostingEnvironment;
         }
 
         [HttpGet]
@@ -46,14 +50,34 @@ namespace TaskoCapstone.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(TaskManager task)
+        public IActionResult Create(TasksViewModel model)
         {
             if (ModelState.IsValid)
             {
-                dal.CreateTask(task);
+                string uniqueFilename = null;
+                if(model.ImageofTask != null)
+                {
+                   string uploadsFolder = Path.Combine(env.WebRootPath, "images");
+                    uniqueFilename = Guid.NewGuid().ToString() + "_" + model.ImageofTask.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFilename);
+                    model.ImageofTask.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                TaskManager newTask = new TaskManager
+                {
+                    NameofTask = model.NameofTask,
+                    Description = model.Description,
+                    StepsofTask = model.StepsofTask,
+                    CompletionofTask = model.CompletionofTask,
+                    CountdownTimer = model.CountdownTimer,
+                    ImageofTask = uniqueFilename
+                
+                };
+
+                
+                dal.CreateTask(model);
                 return RedirectToAction("Parent", "Home");
             }
-            return View(task);
+            return View(model);
         }
 
         public IActionResult Delete(int id)
