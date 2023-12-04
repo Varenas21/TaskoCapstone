@@ -23,8 +23,10 @@
             Tasks
         </h4>
 
-
     </div>
+        <div class="button-container">
+            <a class="create-button" asp-controller="Home" asp-action="Create"><img src="~/images/plusIcon.png" width="30px" height="30px" /> Create Task</a>
+        </div>
 
     @if (Model == null)
     {
@@ -42,10 +44,10 @@
 
 
 
-    <div>
-
-        <footer><a class="top-left-button align-content-center" asp-controller="Home" asp-action="Create"><img src="~/images/plusIcon.png" width="30px" height="30px" /> Create Task</a></footer>
+    <div class="game-button-container">
+        <a class="game-button" asp-controller="Home" asp-action="Game" id="sendButton"> Play Game</a>
     </div>
+
 
 }
 else

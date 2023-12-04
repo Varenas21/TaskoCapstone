@@ -6,7 +6,7 @@ namespace TaskoCapstone
 {
     public class Startup
     {
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceCollection services)
         {
             if(env.IsDevelopment())
             {
@@ -27,7 +27,9 @@ namespace TaskoCapstone
 
             app.UseStaticFiles(options);
 
-            // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+            
         }
     }
+
+    
 }

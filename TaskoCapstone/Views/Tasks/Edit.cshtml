@@ -1,5 +1,6 @@
 ﻿@model TaskManager
 
+<main class="text-center"> 
 <form asp-controller="Tasks" asp-action="Edit" method="post">
     <div class="border p-3 mt-4">
         <h2 class="text-lg-center"> Edit Task </h2>
@@ -20,7 +21,7 @@
 
     <div class="input-container">
         <label asp-for="StepsofTask"> Instructions </label>
-        <input asp-for="StepsofTask" class="form-controls input-user" />
+        <input asp-for="StepsofTask" class="form-control input-user" />
         <span asp-validation-for="StepsofTask" class="error"></span>
     </div>
 
@@ -30,8 +31,18 @@
         <span asp-validation-for="ImageofTask" class="error"></span>
     </div>
 
+    <div class="input-container">
+        <label asp-for="CountdownTimer"> Time for Game </label>
+        <input asp-for="CountdownTimer" class="form-control input-user" placeholder="Ex: 10 (numbers only)" />
+        <span asp-validation-for="CountdownTimer" class="error"></span>
+    </div>
+
     <div>
 
         <button type="submit" class="complete-button form"> Edit Task</button>
     </div>
 </form>
+</main>
+<div>
+    <a asp-controller="Home" asp-action="Parent" class="return-button"> RETURN TO PARENT CONTROL </a>
+</div>

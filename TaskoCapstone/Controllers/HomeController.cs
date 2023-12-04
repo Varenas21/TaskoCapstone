@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TaskoCapstone.Data;
+using TaskoCapstone.Interfaces;
 using TaskoCapstone.Models;
 
 namespace TaskoCapstone.Controllers
@@ -8,11 +9,12 @@ namespace TaskoCapstone.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
-        
+        private readonly IDataAccessLayer dal;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context, IDataAccessLayer dal)
         {
             _context = context;
+            this.dal = dal;
         }
         
 
@@ -40,6 +42,12 @@ namespace TaskoCapstone.Controllers
         public IActionResult Tasks()
         {
             return View();
+        }
+
+        public IActionResult TaskFullView(int id)
+        {
+            var task = dal.GetTasks(id);
+            return View(task);
         }
 
         public IActionResult Create()

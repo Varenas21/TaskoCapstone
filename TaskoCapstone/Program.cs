@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using TaskoCapstone.Controllers;
 using TaskoCapstone.Data;
 using TaskoCapstone.Interfaces;
+using TaskoCapstone.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddTransient<IDataAccessLayer, TaskoDAL>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<UserProfile>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
@@ -40,10 +42,18 @@ app.UseStaticFiles(new StaticFileOptions
 }
     );
 
-app.UseRouting();
+builder.Services.AddControllers().AddApplicationPart(typeof(TasksController).Assembly);
 
+
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+
+});
 
 app.MapControllerRoute(
     name: "default",

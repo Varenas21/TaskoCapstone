@@ -12,11 +12,13 @@ namespace TaskoCapstone.Data
             this.db = db;
         }
 
-        public void CompleteTasks(TaskManager task)
+        public async Task CompleteTasks(int taskId)
         {
-            db.Tasks.Update(task);
-           
-            db.SaveChangesAsync();
+            var task = await db.Tasks.FindAsync(taskId);
+            task.CompletionofTask = true;
+
+            await db.SaveChangesAsync();
+
         }
 
 

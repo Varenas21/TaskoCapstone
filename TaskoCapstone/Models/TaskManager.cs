@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static System.Net.WebRequestMethods;
 
 namespace TaskoCapstone.Models
 {
@@ -15,13 +16,15 @@ namespace TaskoCapstone.Models
         [Required]
         public string StepsofTask { get; set; }
 
-        public string ImageofTask { get; set; }
+        public string? ImageofTask { get; set; } = "https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png";
 
         public bool CompletionofTask { get; set; }
+        [Required]
+        public int CountdownTimer { get; set; }
 
         public TaskManager() { }
 
-        public TaskManager(string nameofTask, string description, string stepsofTask, string imageofTask, bool completionofTask)
+        public TaskManager(string nameofTask, string description, string stepsofTask, string imageofTask, bool completionofTask, int timer)
         {
             NameofTask = nameofTask;
             Description = description;
@@ -29,6 +32,7 @@ namespace TaskoCapstone.Models
             ImageofTask = imageofTask;
             StepsofTask = stepsofTask;
             CompletionofTask = completionofTask;
+            CountdownTimer = timer;
         }
     }
 }

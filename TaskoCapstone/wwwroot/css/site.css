@@ -24,10 +24,12 @@
 }
 
 body {
+    background: url("/images/TaskoBg.png") no-repeat center center fixed ;
+    background-size:cover;
     margin-bottom: 60px;
     background-color: #000000;
     font-family: Bebas;
-    color: #C56CF9;
+    color: ghostwhite;
 }
 
 /* Navbar/Homepage */
@@ -95,7 +97,7 @@ video {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #fff;
+    color: #171717;
     z-index: 1000; /* Higher z-index than the video background */
 }
 
@@ -125,6 +127,7 @@ html {
     border-radius: 5px;
     box-shadow: 0 2px 4px #30303B;
     width: 300px;
+    background-color: #171717;
 }
 
 /* Card Image */
@@ -161,7 +164,8 @@ p {
 .complete-button,
 .edit-button,
 .top-left-button,
-.delete-button {
+.delete-button
+{
     background: #89837C;
     color: #fff;
     border: none;
@@ -173,22 +177,37 @@ p {
 
     .edit-button:hover {
         background: #da9b2d;
+        color: ghostwhite;
     }
 
     .complete-button:hover {
         background: #5dab65;
+        color: ghostwhite;
     }
 
     .delete-button:hover {
         background: #f44336;
+        color: ghostwhite;
     }
 
-.top-left-button {
-    background: #5dab65;
-    position: absolute;
+
+.button-container{
+    position:relative;
 }
 
-    .top-left-button:hover {
+.create-button {
+    background: #5dab65;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px 20px;
+    border-radius:5px;
+    cursor:pointer;
+
+
+}
+
+    .create-button:hover {
         background: #A0AAD4;
     }
 
@@ -235,3 +254,41 @@ p {
     align-items: center;
     height: 100vh;
 }
+
+.game-button {
+    background-color: #714CFE;
+    font-size: 24px;
+    border-radius: 5px;
+    padding: 14px 40px;
+    cursor: pointer;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    position:fixed;
+   
+}
+
+.return-button {
+    background-color: #714CFE;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 14px 40px;
+}
+
+.game-button-container {
+    text-align: center;
+    width: 300px;
+    height: 200px;
+    
+}
+
+a{
+    text-decoration: none;
+    color:ghostwhite;
+}
+
+    a:hover {
+        color: #3ED8FE;
+    }
+

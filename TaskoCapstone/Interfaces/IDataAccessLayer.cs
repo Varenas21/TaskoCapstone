@@ -13,7 +13,7 @@ namespace TaskoCapstone.Interfaces
    
 
         void DeleteTasks(int? id);
-        void CompleteTasks(TaskManager task);
+        Task CompleteTasks(int taskId);
         void CreateTask(TaskManager task);
     }
 }

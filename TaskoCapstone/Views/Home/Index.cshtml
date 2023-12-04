@@ -18,7 +18,7 @@
     <header >
         <nav class="navbar navbar-expand-lg navbar-light d-none d-lg-block shadow-lg" style="z-index: 2000; ">
             <div class="container-fluid">
-                <img src="/images/Logo.png" style="width: 50px; height: 50px;" />
+                <img src="/images/Logo.png" style="width: 80px; height: 80px;" />
                 <a class="navbar-brand nav-link" asp-area="" asp-controller="Home" asp-action="Index"><strong>Tasko Capstone</strong></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -29,9 +29,7 @@
                         <li class="nav-item active">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                   
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li>
@@ -56,8 +54,8 @@
 
             <!-- Text Container -->
             <div class="text-container">
-                <h1 class="mb-3" style="font-family: 'Kidsco'; font-size: 60px;">Welcome to Tasko </h1>
-                <h6 class="mb-4" style="font-family:'Kidsco'; font-size: 48px;">Where Learning Meets Fun!</h6>
+                <h1 class="mb-3" style="font-family: 'Kidsco'; font-size: 60px; color:#3ED8FE;">Welcome to Tasko </h1>
+                <h6 class="mb-4" style="font-family:'Kidsco'; font-size: 48px; color:#FF59C9;">Where Learning Meets Fun!</h6>
             </div>
         </div>
 
@@ -66,19 +64,19 @@
 </body>
 
 
-<main class="mt-5">
+<main class="mt-5 ">
 
     <div class="container col-md-6 gx-5 mb-4">
        
-        <h2 class="text-center"><strong> About Tasko! </strong></h2>
-        <p class="text-lg-center">
+        <h2 class="text-center" ><strong> About Tasko! </strong></h2>
+        <p class="text-lg-center ">
             Tasko is not just a task management platform; it's a gateway to a world where chores become adventures and responsibilities turn into rewards. Tasko empowers parents to create a seamless and enjoyable way to teach their children about responsibility and time management.
         </p>
 
         <hr class="my-1" />
 
         <h2 class="text-center"><strong> Why Tasko? </strong></h2>
-        <p class="text-lg-center">
+        <p class="text-lg-center ">
             Tasko is not just a task management platform; it's a gateway to a world where chores become adventures and responsibilities turn into rewards. Tasko empowers parents to create a seamless and enjoyable way to teach their children about responsibility and time management.
         </p>
         
@@ -87,12 +85,12 @@
 
     <hr class="my-5" />
 
-    <div class="container">
+    <div class="container ">
         <section>
             <div class="row">
                 <div class="col-md-6 gx-5 mb-4">
                     <div class="bg-image shadow-lg" style="font-size: 15px; display: inline-block; background-color: #2226; border: black;">
-                        <img src="~/Images/placeholder.png" width="400" height="350" style="float: left; margin-right:15px;" />
+                        <img src="~/Images/TaskImage.png" width="400" height="350" style="float: left; margin-right:15px;" />
                         <h5 class="text-center"><strong>Create Tasks</strong></h5>
                         Parents can effortlessly create tasks tailored to their children's needs, whether it's completing homework, tidying up their room, or helping with household chores.
                     </div>
