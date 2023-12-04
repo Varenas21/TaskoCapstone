@@ -21,8 +21,6 @@ namespace TaskoCapstone.Data
 
         }
 
-
-
         public void CreateTask(TaskManager task)
         {
             db.Tasks.Add(task);
@@ -51,8 +49,6 @@ namespace TaskoCapstone.Data
         {
             return db.Tasks.ToList();
         }
-
-
 
         public IEnumerable<UserProfile> GetUser()
         {

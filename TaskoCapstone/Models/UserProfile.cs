@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TaskoCapstone.Models
 {
-    public class UserProfile : IdentityUser
+    public class UserProfile : IdentityUser<Guid>
     {
         [Key]
         [Required]
