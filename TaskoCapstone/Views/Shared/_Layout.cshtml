@@ -33,7 +33,7 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Parent">Parent</a>
+                                <a class="nav-link text-dark" @* asp-area="" asp-controller="Home" asp-action="Parent" *@ href="../Views/Home/Create.cshtml">Parent</a>
                             </li>
                             <li>
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Game">Game</a>

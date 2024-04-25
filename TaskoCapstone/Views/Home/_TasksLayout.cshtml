@@ -1,5 +1,9 @@
 ﻿@model TaskoCapstone.Models.TaskManager
 
+@{
+    var photoPath = "~/images/" + (Model.ImageofTask ?? "placeholder.png");
+}
+
 <!DOCTYPE html>
 
 <html>
@@ -29,11 +33,11 @@
                 <div class="card-image">
                     @if (Model.ImageofTask == null)
                     {
-                        <img src="~/images/placeholder.png" alt="Card Image">
+                        <img src="~/images/placeholder.png" alt="Card Image" >
                     }
                     else
                     {
-                        <img src="@Model.ImageofTask" alt="Card Image">
+                        <img src="@photoPath" alt="Card Image" asp-append-version="true">
 
                     }
                 </div>

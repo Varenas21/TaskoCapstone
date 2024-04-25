@@ -1,4 +1,5 @@
-﻿using TaskoCapstone.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using TaskoCapstone.Interfaces;
 using TaskoCapstone.Models;
 
 namespace TaskoCapstone.Data
@@ -23,7 +24,7 @@ namespace TaskoCapstone.Data
 
 
 
-        public void CreateTask(TasksViewModel task)
+        public void CreateTask(TaskManager task)
         {
             db.Tasks.Add(task);
             db.SaveChanges();
@@ -52,7 +53,7 @@ namespace TaskoCapstone.Data
             return db.Tasks.ToList();
         }
 
-
+  
 
         public IEnumerable<UserProfile> GetUser()
         {

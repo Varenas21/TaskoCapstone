@@ -10,7 +10,7 @@
 *@
 @{
 }
-@if (SignInManager.IsSignedIn(User))
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Parent") || User.IsInRole("Admin")))
 {
     <body>
     </body>
@@ -49,6 +49,10 @@
     </div>
 
 
+}
+else if (User.IsInRole("Child"))
+{
+    <div class="align-middle"><h1 class="text-center error" style="font-size:30px;">There are no tasks! Good Job!</h1></div>
 }
 else
 {

@@ -3,6 +3,7 @@ using TaskoCapstone.Data;
 using TaskoCapstone.Interfaces;
 using TaskoCapstone.Models;
 using Microsoft.AspNetCore.Hosting.Builder;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TaskoCapstone.Controllers
 {
@@ -11,7 +12,7 @@ namespace TaskoCapstone.Controllers
         private readonly IDataAccessLayer dal;
         private readonly ApplicationDbContext dbContext;
         private readonly IWebHostEnvironment env;
-        
+
 
         public TasksController(IDataAccessLayer indal, ApplicationDbContext db, IWebHostEnvironment hostingEnvironment)
         {
@@ -21,29 +22,76 @@ namespace TaskoCapstone.Controllers
         }
 
         [HttpGet]
+        [Authorize (Roles = "Admin, Parent")]
         public IActionResult Edit(int id)
         {
             TaskManager findTask = dal.GetTasks().Where(g => g.Id == id).FirstOrDefault();
+            EditViewModel editViewModel = new EditViewModel
+            {
+                Id = findTask.Id,
+                NameofTask = findTask.NameofTask,
+                Description = findTask.Description,
+                StepsofTask = findTask.StepsofTask,
+                CompletionofTask = findTask.CompletionofTask,
+                CountdownTimer = findTask.CountdownTimer,
+                ExistingImagePath = findTask.ImageofTask
+            };
 
-            dal.EditTasks(findTask);
-            return View(findTask);
+            return View(editViewModel);
         }
 
+
+
+
         [HttpPost]
-        public IActionResult Edit(TaskManager task)
+        [Authorize(Roles = "Admin, Parent")]
+        public IActionResult Edit(EditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                dal.EditTasks(task);
-                TempData["success"] = task.NameofTask + " was updated!";
-                return RedirectToAction("Parent", "Home");
+                TaskManager task = dal.GetTasks(model.Id);
 
+                task.NameofTask = model.NameofTask;
+                task.Description = model.Description;
+                task.StepsofTask = model.StepsofTask;
+                task.CompletionofTask = model.CompletionofTask;
+                task.CountdownTimer = model.CountdownTimer;
+                if (model.ImageofTask != null)
+                {
+                    if (model.ExistingImagePath != null)
+                    {
+                        string filePath = Path.Combine(env.WebRootPath, "images", model.ExistingImagePath);
+                        System.IO.File.Delete(filePath);
+                    }
+                    task.ImageofTask = ProcessUploadedFile(model);
+                }
+
+                dal.EditTasks(task);
+                return RedirectToAction("Parent", "Home");
             }
             return View();
         }
 
+        private string ProcessUploadedFile(TasksViewModel model)
+        {
+            string uniqueFilename = null;
+            if (model.ImageofTask != null)
+            {
+                string uploadsFolder = Path.Combine(env.WebRootPath, "images");
+                uniqueFilename = Guid.NewGuid().ToString() + "_" + model.ImageofTask.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFilename);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ImageofTask.CopyTo(fileStream);
+                }
+               
+            }
+
+            return uniqueFilename;
+        }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Parent")]
         public IActionResult Create()
         {
             return View();
@@ -54,14 +102,8 @@ namespace TaskoCapstone.Controllers
         {
             if (ModelState.IsValid)
             {
-                string uniqueFilename = null;
-                if(model.ImageofTask != null)
-                {
-                   string uploadsFolder = Path.Combine(env.WebRootPath, "images");
-                    uniqueFilename = Guid.NewGuid().ToString() + "_" + model.ImageofTask.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFilename);
-                    model.ImageofTask.CopyTo(new FileStream(filePath, FileMode.Create));
-                }
+                string uniqueFilename = ProcessUploadedFile(model);
+
                 TaskManager newTask = new TaskManager
                 {
                     NameofTask = model.NameofTask,
@@ -70,16 +112,16 @@ namespace TaskoCapstone.Controllers
                     CompletionofTask = model.CompletionofTask,
                     CountdownTimer = model.CountdownTimer,
                     ImageofTask = uniqueFilename
-                
+
                 };
 
-                
-                dal.CreateTask(model);
+                dal.CreateTask(newTask);
                 return RedirectToAction("Parent", "Home");
             }
-            return View(model);
+            return View();
         }
 
+        [Authorize(Roles = "Admin, Parent")]
         public IActionResult Delete(int id)
         {
             dal.DeleteTasks(id);
@@ -87,6 +129,7 @@ namespace TaskoCapstone.Controllers
             return RedirectToAction("Parent", "Home");
         }
 
+        [Authorize(Roles = "Admin, Parent")]
         public IActionResult Complete(int id)
         {
             TaskManager task = dbContext.Tasks.Find(id);

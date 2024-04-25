@@ -10,5 +10,30 @@
 }
 
 
-<center><iframe src="/game/index.html" style="width: 960px; height:960px; outline:white;"  class="align-self-lg-center"></iframe></center>
+<center><iframe src="/game/index.html" style="width: 960px; height:960px; outline:white;" class="align-self-lg-center"></iframe></center>
 
+<form name=“counter” style=“color:white”> <span name=“d2” style=“border: 1px solid black; padding: 2px;”></span> </form>
+
+<script>
+
+    var milisec = 0
+    var seconds = 30
+    document.counter.d2.innerText = '30'
+
+    function display() {
+        if (milisec <= 0) {
+            milisec = 9
+            seconds -= 1
+        }
+        if (seconds <= -1) {
+            milisec = 0
+            seconds += 1
+        }
+        else
+            milisec -= 1
+        document.counter.d2.innerText = seconds + "." + milisec
+        setTimeout("display()", 100)
+    }
+    display()
+
+</script>

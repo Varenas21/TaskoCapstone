@@ -1,14 +1,20 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.StaticFiles;
-using Microsoft.Extensions.FileProviders;
+using TaskoCapstone.Data;
+using Microsoft.Owin;
+using Owin;
+
 
 namespace TaskoCapstone
 {
     public class Startup
     {
+
+        // UNITY CONFIGURATION
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceCollection services)
         {
-            if(env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -27,9 +33,10 @@ namespace TaskoCapstone
 
             app.UseStaticFiles(options);
 
-            
+
         }
-    }
 
     
+    }
 }
+

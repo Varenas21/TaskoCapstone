@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TaskoCapstone.Data;
 using TaskoCapstone.Interfaces;
@@ -6,6 +7,7 @@ using TaskoCapstone.Models;
 
 namespace TaskoCapstone.Controllers
 {
+    //[Authorize (Roles = "Admin")]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;

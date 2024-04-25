@@ -4,11 +4,14 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    var photoPath = "~/images/" + (Model.ImageofTask ?? "placeholder.png");
 }
 
 <main class="text-center" style="width: 80vw; height:80vh;">
    
-    <img src="@Model.ImageofTask" class="img-fluid shadow-2-strong rounded-5 mb-4" alt="" />
+    <img src="@photoPath" class="img-fluid shadow-2-strong rounded-5 mb-4" alt="" style="width: 540px; height: 360px;" asp-append-version="true"/>
+
+
     <h1 class="align-text-top text-lg-center"><strong> @Model.NameofTask</strong></h1>
 
     <hr />
